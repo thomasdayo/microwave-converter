@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>電子レンジ ワット数・加熱時間 変換ツール</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>電子レンジ ワット数・加熱時間 変換ツール</h1>
+
+        <div class="input-group">
+            <label for="standardWattage">標準ワット数 (W):</label>
+            <input type="number" id="standardWattage" value="500" min="1" required>
+        </div>
+
+        <div class="input-group">
+            <label>標準加熱時間:</label>
+            <input type="number" id="standardTimeMinutes" value="5" min="0" required> 分
+            <input type="number" id="standardTimeSeconds" value="0" min="0" max="59" required> 秒
+        </div>
+
+        <div class="input-group">
+            <label for="targetWattage">指定ワット数 (W):</label>
+            <input type="number" id="targetWattage" value="600" min="1" required>
+        </div>
+
+        <button id="calculateButton">計算</button>
+
+        <div class="result-group">
+            <label>新しい加熱時間:</label>
+            <span id="resultMinutes">0</span> 分
+            <span id="resultSeconds">0</span> 秒
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

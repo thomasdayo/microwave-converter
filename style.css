@@ -1,0 +1,89 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f7f6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    color: #333;
+}
+
+.container {
+    background-color: #ffffff;
+    padding: 30px 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
+}
+
+h1 {
+    color: #2c3e50;
+    margin-bottom: 30px;
+    font-size: 1.8em;
+}
+
+.input-group, .result-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.input-group label, .result-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+}
+
+input[type="number"] {
+    width: calc(50% - 15px); /* 2つの入力フィールドが並ぶように調整 */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+    box-sizing: border-box; /* paddingがwidthに含まれるように */
+}
+
+input[type="number"]#standardWattage,
+input[type="number"]#targetWattage {
+    width: calc(100% - 15px); /* 単独の入力フィールドは幅を広げる */
+}
+
+input[type="number"]#standardTimeMinutes {
+    margin-right: 5px;
+}
+
+button {
+    background-color: #3498db;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+    margin-bottom: 25px;
+    width: 100%;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+.result-group span {
+    font-size: 1.4em;
+    font-weight: bold;
+    color: #e67e22;
+    margin-right: 5px;
+}
+
+.result-group {
+    background-color: #ecf0f1;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
