@@ -5,33 +5,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>電子レンジ ワット数・加熱時間 変換ツール</title>
     <link rel="stylesheet" href="style.css">
+    <meta name="theme-color" content="#4f46e5">
 </head>
 <body>
     <div class="container">
-        <h1>電子レンジ ワット数・加熱時間 変換ツール</h1>
+        <header class="header">
+            <h1>電子レンジ ワット数・加熱時間 変換ツール</h1>
+            <p class="subtitle">ワット数に合わせて、ちょうどいい加熱時間を計算します</p>
+        </header>
 
         <div class="input-group">
-            <label for="standardWattage">標準ワット数 (W):</label>
-            <input type="number" id="standardWattage" value="500" min="1" required>
+            <label for="standardWattage">標準ワット数</label>
+            <div class="with-unit">
+                <input type="number" id="standardWattage" value="500" min="1" required inputmode="numeric" />
+                <span class="unit">W</span>
+            </div>
         </div>
 
         <div class="input-group">
-            <label>標準加熱時間:</label>
-            <input type="number" id="standardTimeMinutes" value="5" min="0" required> 分
-            <input type="number" id="standardTimeSeconds" value="0" min="0" max="59" required> 秒
+            <label>標準加熱時間</label>
+            <div class="inline-fields">
+                <div class="with-unit">
+                    <input type="number" id="standardTimeMinutes" value="5" min="0" required inputmode="numeric" />
+                    <span class="unit">分</span>
+                </div>
+                <div class="with-unit">
+                    <input type="number" id="standardTimeSeconds" value="0" min="0" max="59" required inputmode="numeric" />
+                    <span class="unit">秒</span>
+                </div>
+            </div>
         </div>
 
         <div class="input-group">
-            <label for="targetWattage">指定ワット数 (W):</label>
-            <input type="number" id="targetWattage" value="600" min="1" required>
+            <label for="targetWattage">指定ワット数</label>
+            <div class="with-unit">
+                <input type="number" id="targetWattage" value="800" min="1" required inputmode="numeric" />
+                <span class="unit">W</span>
+            </div>
         </div>
 
-        <button id="calculateButton">計算</button>
+        <button id="calculateButton" class="btn-primary">計算</button>
 
-        <div class="result-group">
-            <label>新しい加熱時間:</label>
-            <span id="resultMinutes">0</span> 分
-            <span id="resultSeconds">0</span> 秒
+        <div class="result-group" aria-live="polite">
+            <label>新しい加熱時間</label>
+            <div class="time-chips">
+                <span id="resultMinutes" class="chip">0</span>
+                <span class="sep">分</span>
+                <span id="resultSeconds" class="chip">0</span>
+                <span class="sep">秒</span>
+            </div>
+            <p class="note">ヒント: 加熱時間 ≈ 標準時間 × √(標準W ÷ 指定W)</p>
         </div>
     </div>
 

@@ -1,89 +1,214 @@
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f4f7f6;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    margin: 0;
-    color: #333;
+:root{
+  --bg1:#f6f7fb;
+  --bg2:#eef2ff;
+  --card-bg:rgba(255,255,255,0.9);
+  --text:#1f2937;
+  --muted:#6b7280;
+  --brand:#4f46e5;
+  --brand-strong:#4338ca;
+  --accent:#f59e0b;
+  --border:rgba(15,23,42,0.08);
+  --focus:rgba(79,70,229,0.28);
+  --input-bg:#ffffff;
 }
 
-.container {
-    background-color: #ffffff;
-    padding: 30px 40px;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 450px;
-    text-align: center;
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg1:#0b1020;
+    --bg2:#0f172a;
+    --card-bg:rgba(17,24,39,0.6);
+    --text:#e5e7eb;
+    --muted:#9ca3af;
+    --brand:#6366f1;
+    --brand-strong:#5457ee;
+    --accent:#fbbf24;
+    --border:rgba(255,255,255,0.08);
+    --focus:rgba(99,102,241,0.35);
+    --input-bg:#0b1020;
+  }
 }
 
-h1 {
-    color: #2c3e50;
-    margin-bottom: 30px;
-    font-size: 1.8em;
+*{box-sizing:border-box}
+
+html,body{
+  margin:0;
+  padding:0;
 }
 
-.input-group, .result-group {
-    margin-bottom: 20px;
-    text-align: left;
+body{
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+               "Noto Sans JP", "Hiragino Sans", "Yu Gothic", "YuGothic", Arial, sans-serif;
+  color:var(--text);
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:
+    radial-gradient(1200px 600px at 80% -10%, var(--bg2), transparent 60%),
+    radial-gradient(900px 500px at -10% 100%, var(--bg2), transparent 55%),
+    linear-gradient(180deg, var(--bg1), #fff0);
 }
 
-.input-group label, .result-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
-    color: #555;
+.container{
+  width:100%;
+  max-width:560px;
+  padding:28px 28px 24px;
+  border-radius:16px;
+  background:var(--card-bg);
+  border:1px solid var(--border);
+  box-shadow:
+     0 10px 25px rgba(0,0,0,0.07),
+     0 2px 8px rgba(0,0,0,0.04);
+  backdrop-filter:saturate(140%) blur(6px);
 }
 
-input[type="number"] {
-    width: calc(50% - 15px); /* 2つの入力フィールドが並ぶように調整 */
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1em;
-    box-sizing: border-box; /* paddingがwidthに含まれるように */
+.header{
+  text-align:center;
+  margin-bottom:24px;
 }
 
-input[type="number"]#standardWattage,
-input[type="number"]#targetWattage {
-    width: calc(100% - 15px); /* 単独の入力フィールドは幅を広げる */
+h1{
+  margin:0 0 8px;
+  font-size: clamp(1.25rem, 1.1rem + 1vw, 1.9rem);
+  letter-spacing: .2px;
 }
 
-input[type="number"]#standardTimeMinutes {
-    margin-right: 5px;
+.subtitle{
+  margin:0;
+  color:var(--muted);
+  font-size:.95rem;
 }
 
-button {
-    background-color: #3498db;
-    color: white;
-    padding: 12px 25px;
-    border: none;
-    border-radius: 5px;
-    font-size: 1.1em;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-top: 10px;
-    margin-bottom: 25px;
-    width: 100%;
+.input-group, .result-group{
+  margin-bottom:18px;
 }
 
-button:hover {
-    background-color: #2980b9;
+.input-group label, .result-group label{
+  display:block;
+  margin-bottom:10px;
+  font-weight:700;
+  color:var(--text);
 }
 
-.result-group span {
-    font-size: 1.4em;
-    font-weight: bold;
-    color: #e67e22;
-    margin-right: 5px;
+.inline-fields{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:12px;
 }
 
-.result-group {
-    background-color: #ecf0f1;
-    padding: 15px;
-    border-radius: 8px;
-    text-align: center;
-    border: 1px solid #ddd;
+.with-unit{
+  display:grid;
+  grid-template-columns: 1fr auto;
+  align-items:center;
+  gap:8px;
+}
+
+input[type="number"]{
+  width:100%;
+  height:46px;
+  padding:10px 12px;
+  border:1px solid var(--border);
+  border-radius:12px;
+  background:var(--input-bg);
+  color:var(--text);
+  font-size:1rem;
+  font-variant-numeric: tabular-nums;
+  transition:border-color .2s ease, box-shadow .2s ease, background-color .2s ease;
+  -moz-appearance: textfield;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button{
+  -webkit-appearance: none;
+  margin:0;
+}
+
+input[type="number"]:hover{
+  border-color: rgba(79,70,229,0.35);
+}
+
+input[type="number"]:focus-visible{
+  outline:none;
+  border-color: var(--brand);
+  box-shadow: 0 0 0 4px var(--focus);
+}
+
+.unit{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:0 12px;
+  height:40px;
+  border-radius:10px;
+  background: color-mix(in srgb, var(--brand) 12%, transparent);
+  color: color-mix(in srgb, var(--brand-strong) 80%, #000);
+  border:1px solid color-mix(in srgb, var(--brand) 25%, var(--border));
+  font-weight:700;
+  white-space:nowrap;
+}
+
+.btn-primary{
+  width:100%;
+  height:48px;
+  border:none;
+  border-radius:12px;
+  background: linear-gradient(135deg, var(--brand), var(--brand-strong));
+  color:#fff;
+  font-size:1.05rem;
+  font-weight:700;
+  cursor:pointer;
+  box-shadow: 0 8px 20px rgba(79,70,229,0.25), 0 2px 6px rgba(0,0,0,0.06);
+  transition: transform .08s ease, box-shadow .2s ease, filter .2s ease;
+  margin-top:8px;
+  margin-bottom:18px;
+}
+
+.btn-primary:hover{
+  filter: brightness(1.02);
+  box-shadow: 0 10px 26px rgba(79,70,229,0.32), 0 3px 8px rgba(0,0,0,0.08);
+}
+
+.btn-primary:active{
+  transform: translateY(1px);
+}
+
+.result-group{
+  background: color-mix(in srgb, var(--bg2) 30%, transparent);
+  border:1px solid var(--border);
+  padding:16px;
+  border-radius:12px;
+  text-align:center;
+}
+
+.time-chips{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  margin-top:6px;
+}
+
+.chip{
+  min-width:64px;
+  padding:10px 12px;
+  border-radius:10px;
+  background: #fff;
+  color: var(--accent);
+  border:1px solid var(--border);
+  font-size:1.4rem;
+  font-weight:800;
+  letter-spacing:.5px;
+  font-variant-numeric: tabular-nums;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.sep{
+  color:var(--muted);
+  font-weight:700;
+}
+
+.note{
+  margin:10px 0 0;
+  font-size:.85rem;
+  color:var(--muted);
 }
